@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-hpa-custom
+  namespace: demo-hpa-custom
+spec:
+  selector:
+    matchLabels:
+      app: demo-hpa-custom
+  template:
+    metadata:
+      labels:
+        app: demo-hpa-custom
+    spec:
+      containers:
+      - image: elnurtqur/demo-hpa:node_js # You can also create your own image using Dockerfile.
+        name: demo-hpa-custom
+        ports:
+        - name: http
+          containerPort: 8084
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 128Mi
