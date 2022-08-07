@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-hpa-custom
+  namespace: monitoring-logging
+  labels:
+    release: prometheus
+spec:
+  endpoints:
+  - port: http
+    interval: 15s
+  namespaceSelector:
+    matchNames:
+    - demo-hpa-custom
+  selector:
+    matchLabels:
+      app: demo-hpa-custom

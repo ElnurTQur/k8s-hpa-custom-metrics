@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-hpa-custom
+  namespace: demo-hpa-custom
+  labels:
+    app: demo-hpa-custom
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8084
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: demo-hpa-custom
